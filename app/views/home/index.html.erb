@@ -1,1 +1,79 @@
-<h1>Home#index</h1>
+<h1>Style Guide</h1>
+
+<section>
+  <h2>Button Groups</h2>
+  <p>Button groups are used as triggers to change the content that is being displayed on the page.</p>
+  <h3>Example</h3>
+  <div class="my-2">
+    <%= render partial: 'style_guide/button_group_example' %>
+  </div>
+
+  <% content_for :javascript do %>
+    <script>
+      [...document.querySelectorAll('.button-group')].forEach(
+        (el) => {
+          el.addEventListener('click', (e) => {
+            el.querySelector('.button.is-active').classList.remove('is-active');
+            e.target.classList.add('is-active');
+          })
+        }
+      )
+    </script>
+  <% end %>
+
+  <h3>Code</h3>
+  <pre><code><%= render_example_code 'style_guide/button_group_example' %></code></pre>
+
+  <p>
+    As you can see, the <code>button_group</code> helper expects a block to which it will yield an object with the <code>button</code> method.
+    You may also pass any key/value pairs to <code>button_group</code> to add these as attributes on the underlying HTML element.
+    The <code>button</code> method on the yielded object takes the following arguments:
+  </p>
+  <table class="js-responsive-table table table--striped">
+    <thead>
+      <tr>
+        <th style="font-weight: 600;">Parameter</th>
+        <th style="font-weight: 600;">Description</th>
+        <th style="font-weight: 600;">Default Value</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><code>text</code></td>
+        <td>
+          The text for the button. You may omit this argument if and only if you pass a block to construct the button's innerHTML.
+        </td>
+        <td><code>nil</code></td>
+      </tr>
+      <tr>
+        <td><code>:active</code></td>
+        <td>
+          If true, the button will be displayed in the active state.
+          You should only set this to true for one button in the group.
+        </td>
+        <td><code>false</code></td>
+      </tr>
+      <tr>
+        <td><code>:url</code></td>
+        <td>
+          If <code>url</code> is present, the button will be rendered as a link whose <code>href</code> attribute is set to the value of <code>url</code>.
+        </td>
+        <td><code>nil</code></td>
+      </tr>
+      <tr>
+        <td><code>**element_attributes</code></td>
+        <td>
+          All other keyword arguments will be used as attributes for the underlying HTML element.
+        </td>
+        <td><code>{}</code></td>
+      </tr>
+      <tr>
+        <td><code>&block</code></td>
+        <td>
+          If your button needs to contain more than just text, you may omit the <code>text</code> parameter in favor of passing a block to construct the button's innerHTML.
+        </td>
+        <td><code>nil</code></td>
+      </tr>
+    </tbody>
+  </table>
+</section>

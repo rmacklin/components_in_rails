@@ -1,0 +1,7 @@
+<%= button_group do |button_group| %>
+  <%= button_group.button('Cat in the Hat', active: true, class: 'js-custom-class foobar') %>
+  <%= button_group.button do %>
+    <span class="fa fa-pencil"></span> Bartholomew and the Oobleck
+  <% end %>
+  <%= button_group.button('Yertle the Turtle', :'data-foo' => 'bar') %>
+<% end %>
