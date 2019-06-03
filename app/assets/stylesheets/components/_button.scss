@@ -1,0 +1,158 @@
+@import "../colors";
+
+$button-class: "button" !default;
+$button-default-highlight-color: #fff !default;
+$button-default-lowlight-color: #e0e0e0 !default;
+$button-default-shine-opacity: 1 !default;
+$button-default-text-color: $gears-color !default;
+$button-primary-highlight-color: $gears-link-color !default;
+$button-primary-lowlight-color: #0060c0 !default;
+$button-primary-shine-opacity: .4 !default;
+$button-action-highlight-color: #ffa000 !default;
+$button-action-lowlight-color: #f07000 !default;
+$button-action-shine-opacity: .6 !default;
+$button-success-highlight-color: #70c070 !default;
+$button-success-lowlight-color: $gears-success-color !default;
+$button-success-shine-opacity: .5 !default;
+$button-danger-highlight-color: #ff8060 !default;
+$button-danger-lowlight-color: $gears-error-color !default;
+$button-danger-shine-opacity: .5 !default;
+
+%button {
+  box-sizing: border-box;
+
+  border-radius: .3em;
+  background-position: 0 5%; // 5% because the background needs to be fully under the top border
+  background-size: 100% 200%;
+  border: 1px solid;
+  cursor: pointer;
+  display: inline-block;
+  font-weight: normal;
+  line-height: normal;
+  text-decoration: none;
+  transition: background-position 0.15s ease-out, border-color 0.15s ease-out, box-shadow 0.15s ease-out, color 0.15s ease-out;
+
+  &:focus {
+    outline: thin dotted #666;
+    text-decoration:none;
+  }
+
+  &:hover {
+    background-position: 0 50%;
+    text-decoration:none;
+  }
+
+  &:active, &.is-active {
+    background-position: 0 95%;
+    text-decoration:none;
+  }
+
+  &.is-disabled, &[disabled] {
+    background-image: none;
+    box-shadow: none !important;
+    cursor: default;
+    opacity: .65; // don't do this with IE filters as it causes issues with the text color
+    text-shadow: none;
+  }
+}
+
+@mixin button($highlight-color, $lowlight-color, $shine-opacity, $color: $button-default-text-color) {
+  background-image: linear-gradient(to bottom, $highlight-color, $lowlight-color 50%);
+  box-shadow: 0 1px 0 rgba(255,255,255, $shine-opacity) inset;
+
+  border-color: mix(black, $lowlight-color, 15%) mix(black, $lowlight-color, 15%) mix(black, $lowlight-color, 25%);
+  border-color: rgba(0,0,0,.15) rgba(0,0,0,.15) rgba(0,0,0,.25);
+  color: $color;
+
+  // make a top, dark shadow if the text is white,
+  // otherwise make a bottom light shadow
+  @if $color == white {
+    text-shadow: 0 -1px 0 rgba(0,0,0,.25);
+  } @else {
+    text-shadow: 0 1px 0 rgba(255,255,255,1);
+  }
+
+  &:hover {
+    border-color: mix(black, $lowlight-color, 20%) mix(black, $lowlight-color, 20%) mix(black, $lowlight-color, 30%);
+    border-color: rgba(0,0,0,.20) rgba(0,0,0,.20) rgba(0,0,0,.30);
+    color: $color;
+  }
+
+  &:active, &.is-active {
+    box-shadow: 0 0 0 rgba(255,255,255, 0) inset, 0 1px .5em rgba(0,0,0,.15) inset;
+    border-color: mix(black, $lowlight-color, 20%) mix(black, $lowlight-color, 20%) mix(black, $lowlight-color, 30%);
+    border-color: rgba(0,0,0,.20) rgba(0,0,0,.20) rgba(0,0,0,.30);
+  }
+
+  &.is-disabled, &[disabled] {
+    background-color: $lowlight-color;
+    border-color: mix(black, $lowlight-color, 10%) mix(black, $lowlight-color, 10%) mix(black, $lowlight-color, 25%);
+    border-color: rgba(0,0,0,.1) rgba(0,0,0,.1) rgba(0,0,0,.25);
+    color: $color;
+    -webkit-text-fill-color: $color;
+  }
+}
+
+.button {
+  @extend %button;
+  @include button($button-default-highlight-color, $button-default-lowlight-color, $button-default-shine-opacity, $gears-color);
+  margin: 0;
+  padding: 6px 1em 5px;
+}
+
+.button--primary {
+  @include button($button-primary-highlight-color, $button-primary-lowlight-color, $button-primary-shine-opacity, #fff);
+}
+
+.button--action {
+  @include button($button-action-highlight-color, $button-action-lowlight-color, $button-action-shine-opacity, #fff);
+}
+
+.button--success {
+  @include button($button-success-highlight-color, $button-success-lowlight-color, $button-success-shine-opacity, #fff);
+}
+
+.button--danger {
+  @include button($button-danger-highlight-color, $button-danger-lowlight-color, $button-danger-shine-opacity, #fff);
+}
+
+.button--huge {
+  font-size:1.667em;
+}
+
+.button--big {
+  font-size:1.33em;
+}
+
+.button--small {
+  font-size:.85em;
+}
+
+.button--full {
+  width: 100%;
+}
+
+.button--prepend-icon, .button--append-icon {
+  position: relative;
+  & > i, &:before {
+    font-family: FontAwesome;
+    font-size: 1.4em;
+    font-style: normal;
+    position: absolute;
+    top: .33em;
+  }
+}
+
+.button--prepend-icon {
+  padding-left: 2.6em;
+  & > i, &:before {
+    left: .6em;
+  }
+}
+
+.button--append-icon {
+  padding-right: 2.6em;
+  & > i, &:before {
+    right: .6em;
+  }
+}

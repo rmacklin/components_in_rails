@@ -1,0 +1,23 @@
+%clearfix {
+  &:before,
+  &:after {
+    content: " ";
+    display: table;
+  }
+  &:after {
+      clear: both;
+  }
+}
+
+%inline-box {
+  @extend %clearfix;
+  white-space: nowrap; // just in case
+}
+
+%inline-box__item {
+  display: block;
+  float: left;
+  letter-spacing: normal;
+  white-space: normal;
+  word-spacing: normal;
+}
