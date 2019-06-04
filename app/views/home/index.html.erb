@@ -77,3 +77,54 @@
     </tbody>
   </table>
 </section>
+
+<section>
+  <h2>Help Bubble</h2>
+  <p>Use a help bubble when you want to provide clarification or additional information about something, but you don't want to get in the way of experienced users.</p>
+  <h3>Example</h3>
+  <div class="my-2">
+    <%= render partial: 'style_guide/help_bubble_example' %>
+  </div>
+
+  <h3>Code</h3>
+  <pre><code><%= render_example_code 'style_guide/help_bubble_example' %></code></pre>
+
+  <p>
+    The <code>help_bubble</code> helper requires only one argument, <code>body</code>.
+
+    The following table outlines the various options available to the <code>help_bubble</code> helper. These extra parameters are optional.
+    You may also pass any key/value pairs to <code>help_bubble</code> to add these as attributes on the underlying HTML element.
+  </p>
+  <table class="js-responsive-table table table--striped">
+    <thead>
+      <tr>
+        <th style="font-weight: 600;">Parameter</th>
+        <th style="font-weight: 600;">Description</th>
+        <th style="font-weight: 600;">Default Value</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><code>:accompanying_text</code></td>
+        <td>
+          A string that will be displayed next to your help bubble for additional context (e.g. "Why can't I edit this?").
+        </td>
+        <td><code>nil</code></td>
+      </tr>
+      <tr>
+        <td><code>:direction</code></td>
+        <td>
+          The direction of the tooltip ('nw', 'n', 'ne', 'w', 'e', 'sw', 's', or 'se')
+        </td>
+        <td><code>nil</code></td>
+      </tr>
+      <tr>
+        <td><code>**element_attributes</code></td>
+        <td>
+          All other keyword arguments will be used as attributes for the underlying HTML element.
+        </td>
+        <td><code>{}</code></td>
+      </tr>
+    </tbody>
+  </table>
+</section>
