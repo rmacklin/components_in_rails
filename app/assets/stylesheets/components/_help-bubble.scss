@@ -1,0 +1,37 @@
+@import "font-awesome/mixins";
+@import "font-awesome/variables";
+
+$help-bubble-color: #3179cd;
+
+.help-bubble {
+  color: $help-bubble-color;
+  cursor: pointer;
+
+  &:before {
+    @include fa-icon;
+    content: $fa-var-question-circle;
+  }
+
+  &.help-bubble--with-text {
+    &:after {
+      content: attr(data-accompanying-text);
+      padding-left: 1em;
+      font-family: sans-serif;
+      font-size: 16px;
+    }
+
+    &:hover:after {
+      text-decoration: underline;
+    }
+  }
+
+  @media print {
+    display: none;
+  }
+}
+
+@media print {
+  .help-bubble {
+    display: none;
+  }
+}
